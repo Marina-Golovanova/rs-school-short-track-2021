@@ -4,6 +4,7 @@
   "description": "RS School short track tasks 2021",
   "scripts": {
     "test": "npm run lint && mocha",
+    "test-fix": "node node_modules/eslint/bin/eslint.js ./src --fix",
     "lint": "node node_modules/eslint/bin/eslint.js ./src"
   },
   "author": "aorgish, mikhama",

@@ -21,8 +21,58 @@
  *  [1, 1, 1]
  * ]
  */
-function minesweeper(/* matrix */) {
-  throw new Error('Not implemented');
+
+function getBombas(matrix, i, j) {
+  let mins = 0;
+  if (matrix[i][j + 1]) {
+    if (matrix[i][j + 1] === true) {
+      mins += 1;
+    }
+  }
+  if (matrix[i][j - 1]) {
+    if (matrix[i][j - 1] === true) {
+      mins += 1;
+    }
+  }
+  if (matrix[i - 1]) {
+    if (matrix[i - 1][j] === true) {
+      mins += 1;
+    } if (matrix[i - 1][j - 1]) {
+      if (matrix[i - 1][j - 1] === true) {
+        mins += 1;
+      }
+    }
+    if (matrix[i - 1][j + 1]) {
+      if (matrix[i - 1][j + 1] === true) {
+        mins += 1;
+      }
+    }
+  }
+  if (matrix[i + 1]) {
+    if (matrix[i + 1][j] === true) {
+      mins += 1;
+    } if (matrix[i + 1][j - 1]) {
+      if (matrix[i + 1][j - 1] === true) {
+        mins += 1;
+      }
+    }
+    if (matrix[i + 1][j + 1]) {
+      if (matrix[i + 1][j + 1] === true) {
+        mins += 1;
+      }
+    }
+  }
+  return mins;
+}
+
+function minesweeper(matrix) {
+  const newMatrix = JSON.parse(JSON.stringify(matrix));
+  for (let i = 0; i < matrix.length; i++) {
+    for (let j = 0; j < matrix[i].length; j++) {
+      newMatrix[i][j] = getBombas(matrix, i, j);
+    }
+  }
+  return newMatrix;
 }
 
 module.exports = minesweeper;
